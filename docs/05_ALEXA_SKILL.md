@@ -35,6 +35,7 @@ The Custom Skill is used instead of the Home Skill because the Home skill assume
 flat
 0g
 0 g
+tv
 ```
 
 `LIST_OF_STATES` custom slot type:
@@ -69,3 +70,4 @@ Enter the Intent Schema, custom slot types and Sample Utterances File from above
 
 - [Amazon Developer Portal](https://developer.amazon.com/edw/home.html)
 - [Blog about using Alexa Skills with IoT devices](https://developer.amazon.com/public/community/post/Tx3828JHC7O9GZ9/Using-Alexa-Skills-Kit-and-AWS-IoT-to-Voice-Control-Connected-Devices)
+- [Alexa Smart Home Skills API](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/smart-home-skill-api-reference)
