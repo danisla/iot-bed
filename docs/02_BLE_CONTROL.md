@@ -36,7 +36,7 @@ attr handle: 0x0056, end grp handle: 0x005c uuid: 0000ff40-0000-1000-8000-00805f
 attr handle: 0x005d, end grp handle: 0xffff uuid: 0000ff50-0000-1000-8000-00805f9b34fb
 ```
 
-> the device appears to broadcast a bunch of notifications after connecting, this is normal. Also the device disconnects shortly after connecting this might be because there are multiple remotes (controllers) connected.
+> the device appears to broadcast a bunch of notifications after connecting, I'm not sure why. Also the device disconnects shortly after connecting which might be because there are multiple remotes (controllers) connected.
 
 Comparing the UUIDs with the list of [standard GATT services](https://www.bluetooth.com/specifications/gatt/services) we see that only the first 3 (`1800`, `1801`, `180a`) appear on the list and the rest are custom manufacturer services (`ffe0`, `ffe5`, etc).
 
