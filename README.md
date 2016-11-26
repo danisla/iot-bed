@@ -23,6 +23,14 @@ Before getting started it's a good idea to become familiar with the [BLE protoco
 
 You should also be somewhat familiar with [AWS](https://aws.amazon.com/), [Lambda](https://aws.amazon.com/lambda/), [IoT](https://aws.amazon.com/iot/) and the [Alexa Skills Kit](https://developer.amazon.com/alexa-skills-kit). You don't have to be an expert since the purpose of this guide is to walk you through my journey with these services.
 
+----
+
+Here is a diagram of what we'll be building:
+
+![Diagram](./docs/img/diagram.png)
+
+----
+
 Jump to each of this guide:
 
 - [Sniffing the BLE Protocol](./docs/01_BLE_SNIFFING.md)
