@@ -48,6 +48,13 @@ aws iam attach-role-policy \
   --policy-arn arn:aws:iam::aws:policy/AWSIoTDataAccess
 ```
 
+Update the source with your IoT endpoint.
+
+```
+IOT_ENDPOINT=$(aws iot describe-endpoint | jq -r '.endpointAddress')
+sed -i -e s/YOUR_IOT_ENDPOINT/$IOT_ENDPOINT/g src/lambda/lambda_function.js
+```
+
 Create lambda code zip file:
 
 ```
