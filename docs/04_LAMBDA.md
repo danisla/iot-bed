@@ -1,5 +1,8 @@
-d# AWS Lambda Function to update IoT Thing Shadow
+# AWS Lambda Function to update IoT Thing Shadow
 
+This lambda function will be called by the Alexa Skills SDK after the voice intent has been processed in the AVS model. Based on the incoming intent, the function will update the device shadow `desired` state which will notify the conroller via MQTT.
+
+## Creating the Lambda Function from the CLI
 Set environment variables:
 
 ```
