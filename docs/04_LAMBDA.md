@@ -80,4 +80,4 @@ In the Lambda console, you must add the `Alexa Skills Kit` trigger to the lambda
 
 ----
 
-Next we will create the [Alexa Custom Skill](./06_ALEXA_SKILL.md)
+Next we will create the [Alexa Custom Skill](./05_ALEXA_SKILL.md)
