@@ -67,4 +67,4 @@ curl -o root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/r
 
 The code that connects to this shadow is in the [`src/iot`](../src/iot) directory.
 
-Next we create a [Lambda function that will update the thing shadow.](./04_LAMBDA_SHADOW.md)
+Next we create a [Lambda function that will update the thing shadow.](./04_LAMBDA.md)
