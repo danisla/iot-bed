@@ -1,5 +1,9 @@
 # AWS IoT Device for Serta MP III BLE Bed
 
+In this section we'll create an [AWS IoT](https://aws.amazon.com/iot/) thing used to control the bed using [Thing Shadows](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html). Shadows are are useful concept in the world of IoT for asynchronous device control usign standard protocols like MQTT and Websockets. Shadows contain the `state` for a thing and have two important fields, `desired` and `reported`. When the `desired` state is updated from an Lambda function the `delta` is published to he MQTT topic, the device listening on that topic sees the delta and tries to resolve it. Once resolved, the device sets the `reported` state of the shadow and the state is now back in sync.
+
+## Creating the device
+
 Set environment variables:
 
 ```
