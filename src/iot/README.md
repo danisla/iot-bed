@@ -74,9 +74,9 @@ After=network-online.target
 Restart=always
 TimeoutStartSec=0
 RestartSec=3
-Environment=IOT_ENDPOINT=a21frlxo8kxe8s.iot.us-east-1.amazonaws.com
+Environment=IOT_ENDPOINT=YOUR_IOT_ENDPOINT
 Environment=THING_NAME=iot-bed
-Environment=BLE_ADDRESS=F4:B8:5E:B3:20:2B
+Environment=BLE_ADDRESS=ADDRESS_OF_BLE_BASE
 WorkingDirectory=/opt/iot-bed
 ExecStartPre=/bin/bash -c 'until /usr/bin/curl -sf -o /dev/null http://status.aws.amazon.com/data.json; do echo "Waiting for network.."; sleep 5; done'
 ExecStart=/usr/bin/python /opt/iot-bed/iot-bed.py
