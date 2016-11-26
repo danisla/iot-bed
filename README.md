@@ -10,6 +10,15 @@ One of the disadvantages of the wireless remote is that if you are trying to get
 
 The purpose of this project is to maximize consumer laziness and create a voice activated adjustable bed. Yes, the perfect weekend project for a software engineer and casual wireless hacker.
 
+----
+
+Demo video:
+
+[![Demo Video](https://img.youtube.com/vi/tZD7qFJSjJ0/0.jpg)](https://www.youtube.com/watch?v=tZD7qFJSjJ0)
+
+
+----
+
 Before getting started it's a good idea to become familiar with the [BLE protocol](https://learn.adafruit.com/introduction-to-bluetooth-low-energy/introduction) if you haven't worked with it before.
 
 You should also be somewhat familiar with [AWS](https://aws.amazon.com/), [Lambda](https://aws.amazon.com/lambda/), [IoT](https://aws.amazon.com/iot/) and the [Alexa Skills Kit](https://developer.amazon.com/alexa-skills-kit). You don't have to be an expert since the purpose of this guide is to walk you through my journey with these services.
