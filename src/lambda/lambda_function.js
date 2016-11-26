@@ -9,7 +9,7 @@ const AWS = require('aws-sdk');
 const config = {
     "APP_ID": undefined, // TODO replace with your app ID (OPTIONAL).
     "thingName": 'iot-bed',
-    "endpointAddress": "a21frlxo8kxe8s.iot.us-east-1.amazonaws.com"
+    "endpointAddress": "YOUR_IOT_ENDPOINT"
 }
 
 const iotdata = new AWS.IotData({endpoint: config.endpointAddress});
