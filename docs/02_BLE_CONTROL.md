@@ -86,7 +86,7 @@ Again you can compare these with the [standard GATT characteristics](https://www
 
 > Note that there are other apps that connect to BLE devices like the [LightBlue Explorer App for iOS](https://itunes.apple.com/us/app/lightblue-explorer-bluetooth/id557428110) that can decode some of the more common characteristics.
 
-Using the `char-write-cmd` you can write one of our captured values to that handle and confirm that it controls the unit:
+Using the `char-write-cmd` you can write one of our [captured values](./01_BLE_SNIFFING.md) to that handle and confirm that it controls the unit:
 
 ```
 [68:9E:19:12:7E:7F][LE]> connect
