@@ -30,7 +30,7 @@ Now download the log file to your computer:
 adb pull /sdcard/btsnoop_hci.log
 ```
 
-Open [`btsnoop_hci.log`](./docs/btsnoop_hci.log) file in wireshark.
+Open the [`btsnoop_hci.log`](./btsnoop_hci.log) file in wireshark.
 
 ![wireshark](./img/wireshark.png)
 
@@ -83,7 +83,7 @@ python -c 'print(hex((0xe5 + 0xfe + 0x16 + 0x00 + 0x40 + 0x00 + 0x00) ^ 0xff))'
 
 ### Control Methods
 
-It doesn't appear that there is a way to command the massage to 'off' or even directly set the head or foot angles directly. In the app it appears that the "presets" you can create are commanded open-loop with some process that reads back the current angle and continues to send commands until the angles match. Pretty lame if you ask me.
+It doesn't appear that there is a way to directly turn the massage "off" or even set the head or foot angles. In the app it appears that the presets you can create are commanded open-loop with some process that reads back the current angle and continues to send commands until the angles match. Pretty crude IMO.
 
 Without further decoding of the status and telemetry packets, it will be hard to reproduce this kind of control but hopefully it's good enough.
 
