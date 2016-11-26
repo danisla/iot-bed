@@ -1,0 +1,6 @@
+docs/img/orig
+src/iot/*.pem
+src/iot/*.pub
+src/iot/*.crt
+src/lambda/*.zip
+src/lambda/node_modules

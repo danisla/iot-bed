@@ -1,0 +1,12 @@
+{
+  "name": "iot-bed",
+  "version": "1.0.0",
+  "description": "IoT Bed Lambda Function",
+  "main": "lambda_function.js",
+  "scripts": {},
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "alexa-sdk": "^1.0.6"
+  }
+}
