@@ -78,6 +78,6 @@ aws lambda create-function \
 
 In the Lambda console, you must add the `Alexa Skills Kit` trigger to the lambda function before it can be used with the Alexa Skill.
 
-## References
+----
 
-- [Alexa Smart Home Skills API](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/smart-home-skill-api-reference)
+Next we will create the [Alexa Custom Skill](./06_ALEXA_SKILL.md)
