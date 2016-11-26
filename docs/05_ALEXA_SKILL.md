@@ -66,6 +66,50 @@ Enter the Intent Schema, custom slot types and Sample Utterances File from above
 
 ## Testing
 
+Make sure the following is setup before testing:
+
+- Alexa Custom skill is enabled (check alexa mobile app)
+- Lambda function with correct version is set in the Alexa Skill Configuration
+- [`iot-bed.py`](https://github.com/danisla/iot-bed/blob/master/src/iot/iot-bed.py) script is running on your CHIP or Raspberry Pi device.
+
+Now, ask Alexa to adjust your bed:
+
+```
+Alexa, tell bed to turn on zero g
+```
+
+> The bed should move to the Zero-G position
+
+
+```
+Alexa, tell bed to turn on flat preset
+```
+
+> The bed should move to the Flat position
+
+
+```
+Alexa, tell bed to turn massage on
+```
+
+> The bed should start the massage at the lowest level.
+
+
+```
+Alexa, tell bed to turn massage on
+```
+
+> The bed should increase the massage level.
+
+
+```
+Alexa, tell bed to turn massage off
+```
+
+> The bed should increase the massage level twice then turn off.
+
+If the voice commands worked then you successfully hacked your bed and turned it into a cloud-connected voice-controlled device. Welcome to the Internet of Things, I need a nap.
+
 ## References
 
 - [Amazon Developer Portal](https://developer.amazon.com/edw/home.html)
