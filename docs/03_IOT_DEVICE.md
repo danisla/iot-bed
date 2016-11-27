@@ -65,6 +65,13 @@ Download the root cert:
 curl -o root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem
 ```
 
+To get the current shadow state:
+
+```
+aws iot-data get-thing-shadow \
+  --thing-name iot-bed /dev/stdout | jq .
+```
+
 The code that connects to this shadow is in the [`src/iot`](../src/iot) directory.
 
 Next we create a [Lambda function that will update the thing shadow.](./04_LAMBDA.md)

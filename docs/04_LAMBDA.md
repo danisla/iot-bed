@@ -48,12 +48,15 @@ aws iam attach-role-policy \
   --policy-arn arn:aws:iam::aws:policy/AWSIoTDataAccess
 ```
 
-Update the source with your IoT endpoint.
+```
+aws iam put-role-policy \
+  --role-name $ROLE_NAME \
+  --policy-name awslogs \
+  --policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["logs:*"],"Resource":"arn:aws:logs:*:*:*"}]}'
+```
 
-```
-IOT_ENDPOINT=$(aws iot describe-endpoint | jq -r '.endpointAddress')
-sed -i -e s/YOUR_IOT_ENDPOINT/$IOT_ENDPOINT/g src/lambda/lambda_function.js
-```
+
+Update the source with your IoT endpoint.
 
 Create lambda code zip file:
 
@@ -65,6 +68,11 @@ zip code.zip *
 Create the lambda function:
 
 ```
+IOT_ENDPOINT=$(aws iot describe-endpoint | jq -r '.endpointAddress')
+APP_ID=YOUR_ALEXA_SKILL_APP_ID
+```
+
+```
 aws lambda create-function \
   --function-name "${FUNCTION_NAME}" \
   --runtime nodejs4.3 \
@@ -73,7 +81,17 @@ aws lambda create-function \
   --timeout 5 \
   --publish \
   --region us-east-1 \
-  --zip-file fileb://code.zip
+  --zip-file fileb://code.zip \
+  --environment Variables={IOT_ENDPOINT=$IOT_ENDPOINT,APP_ID=$APP_ID}
+```
+
+Getting the logs from Cloudwatch Logs:
+
+```
+aws logs get-log-events \
+  --log-group-name /aws/lambda/$FUNCTION_NAME \
+  --log-stream-name $(aws logs describe-log-streams --log-group-name=/aws/lambda/$FUNCTION_NAME | jq -r '.logStreams[-1].logStreamName') | \
+    jq '.events[].message' | jq -r -c '.'
 ```
 
 In the Lambda console, you must add the `Alexa Skills Kit` trigger to the lambda function before it can be used with the Alexa Skill.

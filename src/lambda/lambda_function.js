@@ -7,9 +7,9 @@ const Alexa = require('alexa-sdk');
 const AWS = require('aws-sdk');
 
 const config = {
-    "APP_ID": undefined, // TODO replace with your app ID (OPTIONAL).
+    "APP_ID": process.env.APP_ID,
     "thingName": 'iot-bed',
-    "endpointAddress": "YOUR_IOT_ENDPOINT"
+    "endpointAddress": process.env.IOT_ENDPOINT
 }
 
 const iotdata = new AWS.IotData({endpoint: config.endpointAddress});
@@ -92,12 +92,14 @@ const handlers = {
     'SetPreset': function () {
         const _this = this;
         const preset = this.event.request.intent.slots.Preset.value.toLowerCase();
+        var setPreset = preset;
         var speechOutput;
         var cardOutput = preset;
         var sendPreset = true;
         if (preset == "0g" || preset == "0 g") {
             speechOutput = "Welcome to Zero-G";
             cardOutput = "Zero-G";
+            setPreset = "zero-g"
         } else if (preset == "tv") {
           speechOutput = "Moving bed to TV preset";
         } else if (preset == "flat") {
@@ -121,7 +123,7 @@ const handlers = {
 
         if (!sendPreset) return;
 
-        setBedPreset(preset, function(err) {
+        setBedPreset(setPreset, function(err) {
             if (err) {
                 console.log(err);
                 _this.emit(':tell', "Sorry, I'm having trouble communicating with the bed right now. ");
@@ -148,6 +150,9 @@ const handlers = {
             } else {
                 if (state == "on") {
                     speechOutput = "Enjoy your relaxing massage";
+                    _this.emit(':tell', speechOutput);
+                } else {
+                    speechOutput = "OK";
                     _this.emit(':tell', speechOutput);
                 }
             }

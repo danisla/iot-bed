@@ -85,7 +85,7 @@ class shadowCallbackContainer:
 
 		if "preset" in payloadDict["state"]:
 			preset = payloadDict["state"]["preset"]
-			if preset == "0g" or preset == "0 g":
+			if preset == "zero-g":
 				res = self.bleController.sendCommand("ZeroG Preset")
 				if not res:
 					print("Error sending command for preset: " + preset)
