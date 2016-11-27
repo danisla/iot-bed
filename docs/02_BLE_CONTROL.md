@@ -82,7 +82,7 @@ handle: 0x0067, char properties: 0x0a, char value handle: 0x0068, uuid: 0000ff54
 handle: 0x006a, char properties: 0x10, char value handle: 0x006b, uuid: 0000ff5f-0000-1000-8000-00805f9b34fb
 ```
 
-Again you can compare these with the [standard GATT characteristics](https://www.bluetooth.com/specifications/gatt/characteristics) and see that ther are some standard ones implemented that start with `00002a` and the rest are custom.
+Again you can compare these with the [standard GATT characteristics](https://www.bluetooth.com/specifications/gatt/characteristics) and see that there are some standard ones implemented that start with `00002a` and the rest are custom.
 
 > Note that there are other apps that connect to BLE devices like the [LightBlue Explorer App for iOS](https://itunes.apple.com/us/app/lightblue-explorer-bluetooth/id557428110) that can decode some of the more common characteristics.
 
