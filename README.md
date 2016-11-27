@@ -13,7 +13,7 @@ The purpose of this project is to maximize consumer laziness and create a voice 
 ----
 
 Demo video:
-> You may want to mute your amazon echo before playing the video if it's nearby.
+> You may want to mute your amazon echo if it's nearby before playing the video.
 
 [![Demo Video](http://img.youtube.com/vi/tZD7qFJSjJ0/0.jpg)](https://www.youtube.com/watch?v=tZD7qFJSjJ0 "Demo Video")
 
