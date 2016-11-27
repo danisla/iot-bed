@@ -5,12 +5,17 @@ import subprocess
 import time
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTShadowClient
 
-logger = logging.getLogger("AWSIoTPythonSDK.core")
-logger.setLevel(logging.DEBUG)
 streamHandler = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 streamHandler.setFormatter(formatter)
-logger.addHandler(streamHandler)
+
+logging.getLogger().addHandler(streamHandler)
+logging.getLogger().setLevel(logging.INFO)
+
+logging.getLogger("AWSIoTPythonSDK.core").setLevel(logging.INFO)
+
+logger = logging.getLogger(__file__)
+logger.setLevel(logging.INFO)
 
 class sertaBLEController:
 	def __init__(self, addr, pretend=False):
@@ -41,7 +46,7 @@ class sertaBLEController:
 			raise Exception("Command not found: " + name)
 
 		for retry in range(3):
-			print("sending command: %s" % cmd)
+			logger.info("Sending BLE command: %s" % cmd)
 			cmd_args = [
 				"/usr/bin/gatttool",
 				"-b", self.addr,
@@ -50,16 +55,17 @@ class sertaBLEController:
 				"--value", cmd
 			]
 			if self.pretend:
-				print(' '.join(cmd_args))
+				logger.info(' '.join(cmd_args))
 				res = 0
 			else:
 				res = subprocess.call(cmd_args)
-			print("command sent")
+			logger.info("BLE command sent")
 			if res == 0:
 				break
 			else:
-				print("Command error, retrying in 2 seconds")
+				logger.info("BLE write error, retrying in 2 seconds")
 				time.sleep(2)
+
 		return res == 0
 
 class shadowCallbackContainer:
@@ -71,10 +77,10 @@ class shadowCallbackContainer:
 	def customShadowCallback_Delta(self, payload, responseStatus, token):
 		# payload is a JSON string ready to be parsed using json.loads(...)
 		# in both Py2.x and Py3.x
-		print("Received a delta message:")
+		logger.info("Received a delta message:")
 		payloadDict = json.loads(payload)
 		deltaMessage = json.dumps(payloadDict["state"])
-		print(deltaMessage)
+		logger.info(deltaMessage)
 
 		newPayload = {
 			"state": {
@@ -88,32 +94,33 @@ class shadowCallbackContainer:
 			if preset == "zero-g":
 				res = self.bleController.sendCommand("ZeroG Preset")
 				if not res:
-					print("Error sending command for preset: " + preset)
+					logger.error("Error sending command for preset: " + preset)
 				else:
 					newPayload["state"]["reported"]["preset"] = preset
 			elif preset == "flat":
 				res = self.bleController.sendCommand("Flat Preset")
 				if not res:
-					print("Error sending command for preset: " + preset)
+					logger.error("Error sending command for preset: " + preset)
 				else:
 					newPayload["state"]["reported"]["preset"] = preset
 			elif preset == "tv":
 				res = self.bleController.sendCommand("TV/PC Preset")
 				if not res:
-					print("Error sending command for preset: " + preset)
+					logger.error("Error sending command for preset: " + preset)
 				else:
 					newPayload["state"]["reported"]["preset"] = preset
 			else:
-				print("Unknown preset:" + preset)
+				logger.warn("Unknown preset:" + preset)
 
 		elif "massage" in payloadDict["state"]:
 			massagePercent = payloadDict["state"]["massage"]
 
 			if massagePercent < 0:
 				num_cmds = int((100 - abs(massagePercent)) / 25)
-				print("Turning OFF massage with %d commands." % num_cmds)
 				if num_cmds != 4:
+					logger.info("Turning OFF massage with %d commands." % num_cmds)
 					for i in range(num_cmds):
+						logger.info("  sending massage command %d/%d" % (i+1,num_cmds))
 						self.bleController.sendCommand("Head and Foot Massage On")
 						time.sleep(2.5)
 				newPayload["state"]["reported"]["massage"] = 0
@@ -121,15 +128,15 @@ class shadowCallbackContainer:
 			else:
 				res = self.bleController.sendCommand("Head and Foot Massage On")
 				if not res:
-					print("Error sending command for massage")
+					logger.error("Error sending command for massage")
 				else:
 					newPayload["state"]["reported"]["massage"] = massagePercent
 		else:
-			print("WARNING: unhandled action, payload: " + deltaMessage)
+			logger.warn("WARNING: unhandled action, payload: " + deltaMessage)
 
-		print("Request to update the reported state...")
+		logger.info("Request to update the reported state...")
 		self.deviceShadowInstance.shadowUpdate(json.dumps(newPayload), None, 5)
-		print("Sent.")
+		logger.info("Sent state update.")
 
 def main():
 
