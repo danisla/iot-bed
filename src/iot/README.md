@@ -29,7 +29,7 @@ num_cmds = int((100 - abs(massagePercent)) / 25)
 
 Since there is no way to directly command a head or foot angle, adding the ability to control the angle is going to be tricky.
 
-## Running
+## Running with systemd
 
 Install the dependencies:
 
@@ -108,6 +108,32 @@ sudo systemctl status iot-bed --no-pager
 ```
 
 > Remember to copy the certs `device*` and root CA `root-CA.crt` to `/opt/iot-bed/` before starting.
+
+## Installing and running with Docker
+
+### or with docker-compose on HypriotOS with RPI3
+
+Install [HypriotOS](https://blog.hypriot.com/downloads/) on your Raspberry Pi 3
+
+```
+git clone https://github.com/danisla/iot-bed.git
+```
+
+Copy your `device-key.pem` `device.pem` `device.pub` and `root-CA.crt` to the `src/iot/` directory.
+
+```
+cd iot-bed/src/iot
+cat > .env <<"EOF"
+IOT_ENDPOINT=YOUR IOT ENDPOINT
+THING_NAME=iot-bed
+BLE_ADDRESS=YOUR BLE ADDRESS
+EOF
+```
+
+```
+docker-compose pull
+docker-compose up -d
+```
 
 ## References
 
