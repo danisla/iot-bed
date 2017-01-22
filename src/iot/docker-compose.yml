@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: docker.io/danisla/iot-bed:latest
+    privileged: true
+    network_mode: host
+    env_file: .env
+    tty: true
+    restart: always
